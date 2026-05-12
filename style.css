@@ -1,16 +1,14 @@
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #3153bb;
+    
 }
 
 .login-page {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: #3153bb;
 }
 
 .card {
