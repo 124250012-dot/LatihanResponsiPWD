@@ -20,4 +20,17 @@ body {
     border-radius: 10px;
 }
 
+.koleksi-body {
+    min-height: 100vh;
+    background-color: #dee7ff;
+}
 
+.koleksi-container {
+    width: 90%;
+}
+
+.koleksi-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

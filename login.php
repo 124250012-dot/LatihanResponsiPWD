@@ -10,7 +10,7 @@
   <body>
 
   <section class="login-page">
-  <div class="card" style="width: 30rem;">
+  <div class="card" style="width: 40rem;">
   <div class="card-body" style="width: 100%;">
     <h3 class="card-title text-center">Pustaka Digital</h3>
     <p class="card-text text-center">Sistem Perpustakaan Nasional</p>
