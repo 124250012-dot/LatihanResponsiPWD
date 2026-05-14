@@ -1,7 +1,3 @@
-body {
-    
-}
-
 .login-page {
     min-height: 100vh;
     display: flex;
@@ -33,4 +29,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.edit-page {
+    min-height: 100vh;
+    background-color: #dee7ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 }

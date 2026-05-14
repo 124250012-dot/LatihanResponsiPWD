@@ -43,8 +43,9 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
     <section class="koleksi-content">
       <?php
 if (isset($_SESSION['message'])) { ?>
-        <div class="alert alert-info text-center" role="alert">
+        <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
           <?php echo $_SESSION['message']; ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <?php
       unset($_SESSION['message']);
@@ -78,24 +79,24 @@ if (isset($_SESSION['message'])) { ?>
     include 'koneksi.php';
     $query = "SELECT * FROM data_buku";
     $result = mysqli_query($koneksi, $query);
-    $id = 1;
-    while ($data = mysqli_fetch_assoc($result)) {
+    $no = 1;
+    while ($row = mysqli_fetch_assoc($result)) {
     ?>
     <tr>
-      <th scope="row"><?php echo $id; ?></th>
-      <td><?php echo $data['kode_buku']; ?></td>
-      <td><?php echo $data['judul']; ?></td>
-      <td><?php echo $data['pengarang']; ?></td>
-      <td><?php echo $data['kategori']; ?></td>
-      <td><?php echo $data['stok']; ?></td>
-      <td><?php echo $data['status']; ?></td>
+      <th scope="row"><?php echo $no; ?></th>
+      <td><?php echo $row['kode_buku']; ?></td>
+      <td><?php echo $row['judul']; ?></td>
+      <td><?php echo $row['pengarang']; ?></td>
+      <td><?php echo $row['kategori']; ?></td>
+      <td><?php echo $row['stok']; ?></td>
+      <td><?php echo $row['status']; ?></td>
       <td>
-        <a href="#" class="btn btn-success btn-sm">Edit</a>
-        <a href="#" class="btn btn-warning btn-sm">Hapus</a>
+        <a href="edit_koleksi.php?id=<?php echo $row['id_buku']; ?>" class="btn btn-success btn-sm">Edit</a>
+        <a href="hapus_koleksi.php?id=<?php echo $row['id_buku']; ?>" class="btn btn-warning btn-sm">Hapus</a>
       </td>
     </tr>
     <?php
-    $id++;
+    $no++;
   }
   ?>
   </tbody>
@@ -116,12 +117,6 @@ if (isset($_SESSION['message'])) { ?>
         <div class="modal-body">
 
           <form action="tambahBuku_proses.php" method="POST">
-            <!-- <div class="mb-3">
-              <label for="kode_buku" class="form-label">Kode Buku</label>
-              <input type="text" class="form-control" id="kode_buku" name="kode_buku" required>
-              <label for="stok" class="form-label">Jumlah Stok</label>
-              <input type="number" class="form-control" id="jumlah_stok" name="stok" required>
-            </div> -->
             <div class="row g-3 mb-3">
               <div class="col-md-6">
                 <label class="form-label">Kode Buku</label>
@@ -150,16 +145,6 @@ if (isset($_SESSION['message'])) { ?>
               <option value="Sains">Sains</option>
               </select>
             </div>
-            <!-- <div class="mb-3">
-              <label for="kategori" class="form-label">Kategori</label>
-              <input type="text" class="form-control" id="kategori" name="kategori" required>
-            </div> -->
-            <!-- <div class="mb-3">
-              <label for="status" class="form-label">Status</label>
-              <select class="form-select" id="status" name="status" required>
-                <option value="Tersedia">Tersedia</option>
-                <option value="Dipinjam">Dipinjam</option>
-              </select> -->
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>

@@ -1,6 +1,12 @@
 <?php
 session_start();
+if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
+    header("Location: login.php?message=login_gagal");
+    exit();
+}
+
 include 'koneksi.php';
+
 
 if (isset($_POST['simpan'])) { //untuk nangkap data dari form modal
     $kode_buku = $_POST['kode_buku'];
@@ -9,16 +15,14 @@ if (isset($_POST['simpan'])) { //untuk nangkap data dari form modal
     $kategori  = $_POST['kategori'];
     $stok      = $_POST['stok'];
 
-    // $query = "INSERT INTO data_buku (kode_buku, judul, pengarang, kategori, stok, status) VALUES ('$kode_buku', '$judul', '$pengarang', '$kategori', '$stok', 'Tersedia')";
-    // $result = mysqli_query($koneksi, $query);
+    if ($stok == 0) {
+        $status = "Habis";
+    } else if ($stok > 0 && $stok <= 5) {
+        $status = "Menipis";
+    } else {
+        $status = "Tersedia";
+    } 
 
-    // if ($result) {
-    //     $_SESSION['message'] = "Data buku berhasil ditambahkan.";
-    //     header("Location: koleksi.php");
-    // } else {
-    //     $_SESSION['message'] = "Gagal menambahkan data buku.";
-    //     header("Location: koleksi.php");
-    // }
 
     $cek = mysqli_query($koneksi, "SELECT * FROM data_buku WHERE kode_buku = '$kode_buku' OR judul = '$judul'"); //buat ngecek apakah kode buku udah ada di database, biar ga keduplikat
 
@@ -27,7 +31,7 @@ if (isset($_POST['simpan'])) { //untuk nangkap data dari form modal
         header("Location: koleksi.php");
         //echo "<script>alert('Kode Buku atau Judul Buku sudah ada!'); window.location='koleksi.php';</script>";
     } else { // kala ga ada yg sama maka data yg dinput akan dimasukkan ke database
-        $query = "INSERT INTO data_buku (kode_buku, judul, pengarang, kategori, stok, status) VALUES ('$kode_buku', '$judul', '$pengarang', '$kategori', '$stok', 'Tersedia')";
+        $query = "INSERT INTO data_buku (kode_buku, judul, pengarang, kategori, stok, status) VALUES ('$kode_buku', '$judul', '$pengarang', '$kategori', '$stok', '$status')";
 
         if (mysqli_query($koneksi, $query)) {
             $_SESSION['message'] = "Data buku berhasil ditambahkan.";
