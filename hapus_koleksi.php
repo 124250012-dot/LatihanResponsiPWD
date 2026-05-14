@@ -20,6 +20,14 @@ if (isset($_GET['id'])) {
         exit();
     }
 
+    $cekBukuDipinjam = "SELECT * FROM peminjaman WHERE id_buku='$id' AND status='Dipinjam'";
+    $resultCekBukuDipinjam = mysqli_query($koneksi, $cekBukuDipinjam);
+    if (mysqli_num_rows($resultCekBukuDipinjam) > 0) {
+        $_SESSION['message'] = "Buku tidak dapat dihapus karena sedang dipinjam.";
+        header("Location: koleksi.php");
+        exit();
+    }
+
     $query = "DELETE FROM data_buku WHERE id_buku='$id'";
     if (mysqli_query($koneksi, $query)) {
         $_SESSION['message'] = "Data buku berhasil dihapus.";

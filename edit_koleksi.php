@@ -11,7 +11,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Perpustakaan Digital</title>
+    <title>Edit Koleksi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -27,10 +27,10 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Koleksi Buku</a>
+          <a class="nav-link active" aria-current="page" href="koleksi.php">Koleksi Buku</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Peminjaman</a>
+          <a class="nav-link" href="peminjaman_koleksi.php">Peminjaman</a>
         </li>
       </ul>
       <span class="navbar-text">
